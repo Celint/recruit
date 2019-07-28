@@ -1,0 +1,12 @@
+<block wx:for="{{parts}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
+  <view data-index="{{idx}}" bindtap="goDepartment">
+    <van-card
+      title="{{item.name}}"
+      thumb="{{item.icon}}"
+    />
+  </view>
+</block>
+<view class="img">
+  <image src="../../images/plus.png" mode='aspectFit' bindtap="joinus"/>
+  <view>加入我们</view>
+</view>

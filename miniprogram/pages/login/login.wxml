@@ -1,0 +1,6 @@
+<view class='login'>
+  <image src='../../images/cclogo.png'></image>
+  <text>创业网招新</text>
+  <button type='primary' open-type='getUserInfo'          bindgetuserinfo='getUserInfo'>点击授权登录</button>
+  <button bindtap="wait">我再看看</button>
+</view>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-field": "../../vant/field/index",
+    "van-cell-group": "../../vant/cell-group/index",
+    "van-panel": "../../vant/panel/index",
+    "van-button": "../../vant/button/index"
+  },
+  "navigationBarTitleText": "我的"
+}

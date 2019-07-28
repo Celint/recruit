@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/my",
+    "pages/department/department",
+    "pages/joinus/joinus",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundColor": "#FFCD8D",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF0003",
+    "navigationBarTitleText": "创业网招新",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#FF0003",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "部门",
+      "iconPath": "images/department.png",
+      "selectedIconPath": "images/department-o.png"
+    },{
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "images/my.png",
+      "selectedIconPath": "images/my-o.png"
+    }]
+  },
+  "sitemapLocation": "sitemap.json"
+}

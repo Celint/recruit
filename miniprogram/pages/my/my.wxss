@@ -1,0 +1,24 @@
+/* 头像 */
+.user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user image{
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.user text{     
+  color: #FF0003;
+}
+/* 文章过长省略显示 */
+.text {
+  font-size: 25rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

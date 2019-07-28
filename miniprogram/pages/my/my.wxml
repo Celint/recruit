@@ -1,0 +1,66 @@
+<view class='user'>
+  <image src='{{userInfo.avatarUrl}}'/>
+  <text>{{userInfo.nickName}}</text>
+</view>
+<view>我的基本资料</view>
+<van-cell-group>
+  <van-field
+    clearable
+    label="姓名"
+    value="{{name}}"
+    placeholder="请输入姓名"
+    bind:input="name"
+    title-width="70px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-field
+    clearable
+    label="学号"
+    placeholder="请输入学号"
+    type="number"
+    bind:input="sid"
+    title-width="70px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-field
+    clearable
+    label="手机号"r
+    placeholder="请输入手机号"
+    error-message="{{errmess}}"
+    type="number"
+    maxlength="11"
+    bind:input="phone"
+    title-width="70px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-field
+    clearable
+    label="专业班级"
+    placeholder="请输入专业班级"
+    bind:input="major"
+    title-width="70px"
+    size="large"
+    border="{{true}}"
+  />
+</van-cell-group>
+<button wx:if="{{save}}" type="primary" bindtap="save">保存</button>
+<view wx:if="{{resume}}">
+  <view>我的简历</view>
+  <block>
+    <van-panel title="{{}}·{{}}" use-footer-slot>
+      <view class="text">{{}}</view>
+      <view slot="footer">
+        <van-button size="small">修改</van-button>
+        <van-button size="small" type="danger">删除</van-button>
+      </view>
+    </van-panel>  
+  </block>
+</view>
+<view wx:else class="nothing">  
+  <view>你还没有报名简历哦(￣▽￣)"</view>
+  <view>去看看有什么部门吧(o゜▽゜)o☆</view>
+  <image src="../../images/nothing.png" mode="aspectFit" />
+</view>

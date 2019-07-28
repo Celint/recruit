@@ -1,0 +1,8 @@
+<block wx:for="{{part}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
+  <view data-index="{{idx}}" bindtap="goDepartment">
+    <van-card
+      title="{{item.name}}"
+      thumb="{{item.path}}"
+    />
+  </view>
+</block>
