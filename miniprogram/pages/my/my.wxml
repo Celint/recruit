@@ -10,44 +10,47 @@
     value="{{name}}"
     placeholder="请输入姓名"
     bind:input="name"
-    title-width="70px"
+    title-width="80px"
     size="large"
     border="{{true}}"
   />
   <van-field
     clearable
     label="学号"
+    value="{{sid}}"
     placeholder="请输入学号"
     type="number"
     bind:input="sid"
-    title-width="70px"
+    title-width="80px"
     size="large"
     border="{{true}}"
   />
   <van-field
     clearable
-    label="手机号"r
+    label="手机号"
+    value="{{phone}}"
     placeholder="请输入手机号"
     error-message="{{errmess}}"
     type="number"
     maxlength="11"
     bind:input="phone"
-    title-width="70px"
+    title-width="80px"
     size="large"
     border="{{true}}"
   />
   <van-field
     clearable
     label="专业班级"
+    value="{{major}}"
     placeholder="请输入专业班级"
     bind:input="major"
-    title-width="70px"
+    title-width="80px"
     size="large"
     border="{{true}}"
   />
 </van-cell-group>
 <button wx:if="{{save}}" type="primary" bindtap="save">保存</button>
-<view wx:if="{{resume}}">
+<view wx:if="{{resume != null}}">
   <view>我的简历</view>
   <block>
     <van-panel title="{{}}·{{}}" use-footer-slot>

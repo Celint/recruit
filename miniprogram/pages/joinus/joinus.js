@@ -11,10 +11,13 @@ Page({
   },
 
   onShow() {
-    console.log(app.globalData.userInfo)
     if (app.globalData.userInfo == null) {
       wx.redirectTo({
         url: '/pages/login/login'
+      })
+    } else {
+      this.setData({
+        userInfo: app.globalData.userInfo
       })
     }
   }

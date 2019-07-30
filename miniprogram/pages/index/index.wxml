@@ -1,11 +1,16 @@
-<block wx:for="{{parts}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
-  <view data-index="{{idx}}" bindtap="goDepartment">
-    <van-card
-      title="{{item.name}}"
-      thumb="{{item.icon}}"
-    />
-  </view>
-</block>
+<image wx:if="{{show}}" src="../../images/four.PNG" mode="aspectFit" bindtap="openup" />
+<view wx:else>
+  <button bindtap="opendown">收起<van-icon name="arrow-up" /></button>
+  <block wx:for="{{parts}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
+    <view data-index="{{idx}}" bindtap="goDepartment">
+      <van-card
+        title="{{item.name}}"
+        thumb="{{item.icon}}"
+      />
+    </view>
+  </block>
+</view>
+
 <view class="img">
   <image src="../../images/plus.png" mode='aspectFit' bindtap="joinus"/>
   <view>加入我们</view>

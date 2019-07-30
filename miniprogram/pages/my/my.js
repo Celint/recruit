@@ -1,5 +1,7 @@
 // pages/my/my.js
 const app = getApp()
+const db = wx.cloud.database()
+const userInfo = db.collection('userInfo')
 
 Page({
 
@@ -13,7 +15,7 @@ Page({
     major: null,
     errmess: null,
     save: false,
-    resume: false
+    resume: null
   },
 
   onShow() {
@@ -25,13 +27,16 @@ Page({
       this.setData({
         userInfo: app.globalData.userInfo
       })
+      this.setData({
+        name: this.data.userInfo.name,
+        sid: this.data.userInfo.sid,
+        phone: this.data.userInfo.phone,
+        major: this.data.userInfo.major
+      })
     }
     if (app.globalData.resume != null) {
       this.setData({
-        name: app.globalData.resume.name,
-        sid: app.globalData.resume.sid,
-        phone: app.globalData.resume.phone,
-        major: app.globalData.resume.major
+        resume: app.globalData.resume
       })
     }
   },
@@ -63,7 +68,8 @@ Page({
   phone(e) {
     if (e.detail.length > 0 && e.detail.length < 11) {
       this.setData({
-        errmess: "手机号格式错误"
+        errmess: "手机号格式错误",
+        phone: e.detail
       })
     } else if (e.detail.length == 11) {
       this.setData({
@@ -72,7 +78,8 @@ Page({
       })
     } else {
       this.setData({
-        errmess: null
+        errmess: null,
+        phone: null
       })
     }
     this.saveIt()
@@ -91,7 +98,7 @@ Page({
   },
 
   saveIt() {
-    if (this.data.name != null && this.data.phone != null && this.data.sid != null && this.data.major != null) {
+    if (this.data.name != null && this.data.phone.length == 11 && this.data.sid != null && this.data.major != null) {
       this.setData({
         save: true
       })
@@ -101,5 +108,31 @@ Page({
       })
     }
   },
+
+  save() {
+    var id = app.globalData.userInfo._id
+    var that = this
+    userInfo.doc(id).update({
+      data: {
+        name: that.data.name,
+        sid: that.data.sid,
+        phone: that.data.phone,
+        major: that.data.major
+      }, success(res) {
+        that.setData({
+          save: false,
+        })
+        app.globalData.userInfo.name = that.data.name
+        app.globalData.userInfo.sid = that.data.sid
+        app.globalData.userInfo.phone = that.data.phone
+        app.globalData.userInfo.major = that.data.major
+        wx.showToast({
+          title: '保存成功',
+          icon: 'success',
+          duration: 500,
+        })
+      }
+    })
+  }
 
 })

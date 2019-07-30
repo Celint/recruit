@@ -5,6 +5,7 @@ const userInfo = db.collection('userInfo')
 
 Page({
   data: {
+    show: true,
     parts: [{
       name: "创业网",
       icon: "../../images/cclogo.png"
@@ -52,6 +53,18 @@ Page({
   joinus() {
     wx.navigateTo({
       url: '/pages/joinus/joinus'
+    })
+  },
+
+  openup() {
+    this.setData({
+      show: false
+    })
+  },
+
+  opendown() {
+    this.setData({
+      show: true
     })
   }
 
