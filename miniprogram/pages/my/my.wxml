@@ -7,6 +7,7 @@
   <van-field
     clearable
     label="姓名"
+    left-icon="user-o"
     value="{{name}}"
     placeholder="请输入姓名"
     bind:input="name"
@@ -17,6 +18,7 @@
   <van-field
     clearable
     label="学号"
+    left-icon="notes-o"
     value="{{sid}}"
     placeholder="请输入学号"
     type="number"
@@ -28,6 +30,7 @@
   <van-field
     clearable
     label="手机号"
+    left-icon="phone-o"
     value="{{phone}}"
     placeholder="请输入手机号"
     error-message="{{errmess}}"
@@ -41,6 +44,7 @@
   <van-field
     clearable
     label="专业班级"
+    left-icon="desktop-o"
     value="{{major}}"
     placeholder="请输入专业班级"
     bind:input="major"

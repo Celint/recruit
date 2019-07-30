@@ -1,0 +1,101 @@
+<view wx:if="{{picture != null}}" class="add-picture">
+  <image src="{{picture}}"/>
+  <van-button plain type="primary" bindtap="addPicture">重新上传</van-button>
+</view>
+<view wx:else class="add-picture">
+  <view class="top"></view>
+  <van-button plain type="primary" bindtap="addPicture">添加一寸相片</van-button>
+</view>
+<van-cell-group>
+  <van-field
+    clearable
+    label="姓名"
+    left-icon="user-o"
+    value="{{name}}"
+    placeholder="请输入姓名"
+    bind:input="name"
+    title-width="80px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-field
+    clearable
+    label="学号"
+    left-icon="notes-o"
+    value="{{sid}}"
+    placeholder="请输入学号"
+    type="number"
+    bind:input="sid"
+    title-width="80px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-field
+    clearable
+    label="手机号"
+    left-icon="phone-o"
+    value="{{phone}}"
+    placeholder="请输入手机号"
+    error-message="{{errmess}}"
+    type="number"
+    maxlength="11"
+    bind:input="phone"
+    title-width="80px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-field
+    clearable
+    label="专业班级"
+    left-icon="desktop-o"
+    value="{{major}}"
+    placeholder="请输入专业班级"
+    bind:input="major"
+    title-width="80px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-cell
+    title="政治面貌"
+    icon="friends-o"
+    size="large"
+  >
+    <picker  
+      bindchange="bindPicker1Change" 
+      value="{{idx0}}" 
+      range="{{politic}}"
+    >当前选择: {{politic[idx0]}}</picker>
+  </van-cell>
+  <van-cell
+    title="请选择部门"
+    icon="newspaper-o"
+    size="large"
+  >
+    <picker>当前选择: {{}}</picker>
+  </van-cell>
+  <van-field
+    clearable
+    label="兴趣爱好"
+    left-icon="music-o"
+    value="{{hobby}}"
+    type="textarea"
+    placeholder="请填写兴趣爱好"
+    bind:input=""
+    autosize
+    title-width="80px"
+    size="large"
+    border="{{true}}"
+  />
+  <van-cell
+    title="个人简历"
+    icon="orders-o"
+    size="large"
+  />
+</van-cell-group>
+<textarea bindblur="bindTextArea" auto-height placeholder="200字左右" />
+<view wx:if="{{save}}" class="save">
+  <view class="top"></view>
+  <van-button type="primary" bindtap="saveIt">保存</van-button>
+  <view class="top"></view>
+</view>
+<view wx:else class="bottom"></view>

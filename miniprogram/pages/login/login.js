@@ -9,6 +9,12 @@ Page({
       data: {
         nickName: e.detail.userInfo.nickName,
         avatarUrl: e.detail.userInfo.avatarUrl,
+        name: null,
+        sid: null,
+        phone: null,
+        major: null,
+        hobby: null,
+        picture: null,
       },
     }).then(res => {
       userInfo.doc(res._id).get({
