@@ -1,6 +1,10 @@
 <view wx:if="{{picture != null}}" class="add-picture">
-  <image src="{{picture}}"/>
-  <van-button plain type="primary" bindtap="addPicture">重新上传</van-button>
+  <image src="{{picture}}" mode="aspectFit" />
+  <view class="but">
+    <van-button plain type="primary" bindtap="reAddPicture">重新上传</van-button>
+    <view class="center"></view>
+    <van-button plain type="warning" bindtap="removePicture">删除相片</van-button>
+  </view>
 </view>
 <view wx:else class="add-picture">
   <view class="top"></view>
@@ -80,7 +84,7 @@
     value="{{hobby}}"
     type="textarea"
     placeholder="请填写兴趣爱好"
-    bind:input=""
+    bind:input="hobby"
     autosize
     title-width="80px"
     size="large"

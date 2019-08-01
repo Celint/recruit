@@ -15,6 +15,7 @@ Page({
         major: null,
         hobby: null,
         picture: null,
+        politicCountenance: null
       },
     }).then(res => {
       userInfo.doc(res._id).get({

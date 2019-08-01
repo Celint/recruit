@@ -14,7 +14,6 @@ Page({
     phone: null,
     major: null,
     errmess: null,
-    save: false,
     resume: null
   },
 
@@ -31,7 +30,8 @@ Page({
         name: this.data.userInfo.name,
         sid: this.data.userInfo.sid,
         phone: this.data.userInfo.phone,
-        major: this.data.userInfo.major
+        major: this.data.userInfo.major,
+        errmess: null
       })
     }
     if (app.globalData.resume != null) {
@@ -50,7 +50,13 @@ Page({
         name: null
       })
     }
-    this.saveIt()
+    app.globalData.userInfo.name = this.data.name
+    var that = this
+    userInfo.doc(app.globalData.userInfo._id).update({
+      data: {
+        name: that.data.name
+      }
+    })
   },
 
   sid(e) {
@@ -62,10 +68,17 @@ Page({
         sid: null
       })
     }
-    this.saveIt()
+    app.globalData.userInfo.sid = this.data.sid
+    var that = this
+    userInfo.doc(app.globalData.userInfo._id).update({
+      data: {
+        sid: that.data.sid
+      }
+    })
   },
 
   phone(e) {
+    var that = this
     if (e.detail.length > 0 && e.detail.length < 11) {
       this.setData({
         errmess: "手机号格式错误",
@@ -76,13 +89,24 @@ Page({
         errmess: null,
         phone: e.detail
       })
+      app.globalData.userInfo.phone = this.data.phone
+      userInfo.doc(app.globalData.userInfo._id).update({
+        data: {
+          phone: that.data.phone
+        }
+      })
     } else {
       this.setData({
         errmess: null,
         phone: null
       })
+      app.globalData.userInfo.phone = this.data.phone
+      userInfo.doc(app.globalData.userInfo._id).update({
+        data: {
+          phone: that.data.phone
+        }
+      })
     }
-    this.saveIt()
   },
 
   major(e) {
@@ -94,45 +118,13 @@ Page({
         major: null
       })
     }
-    this.saveIt()
-  },
-
-  saveIt() {
-    if (this.data.name != null && this.data.phone.length == 11 && this.data.sid != null && this.data.major != null) {
-      this.setData({
-        save: true
-      })
-    } else {
-      this.setData({
-        save: false
-      })
-    }
-  },
-
-  save() {
-    var id = app.globalData.userInfo._id
+    app.globalData.userInfo.major = this.data.major
     var that = this
-    userInfo.doc(id).update({
+    userInfo.doc(app.globalData.userInfo._id).update({
       data: {
-        name: that.data.name,
-        sid: that.data.sid,
-        phone: that.data.phone,
         major: that.data.major
-      }, success(res) {
-        that.setData({
-          save: false,
-        })
-        app.globalData.userInfo.name = that.data.name
-        app.globalData.userInfo.sid = that.data.sid
-        app.globalData.userInfo.phone = that.data.phone
-        app.globalData.userInfo.major = that.data.major
-        wx.showToast({
-          title: '保存成功',
-          icon: 'success',
-          duration: 500,
-        })
       }
     })
-  }
+  },
 
 })

@@ -53,7 +53,6 @@
     border="{{true}}"
   />
 </van-cell-group>
-<button wx:if="{{save}}" type="primary" bindtap="save">保存</button>
 <view wx:if="{{resume != null}}">
   <view>我的简历</view>
   <block>

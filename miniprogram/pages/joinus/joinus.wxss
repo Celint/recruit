@@ -6,6 +6,13 @@
 .add-picture image {
   width: 50%;
 }
+.but {
+  display: flex;
+  flex-direction: row;
+}
+.center {
+  width: 50px;
+}
 /* 按钮居中 */
 .save {
   display: flex;
