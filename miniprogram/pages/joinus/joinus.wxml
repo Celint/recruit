@@ -66,16 +66,30 @@
   >
     <picker  
       bindchange="bindPicker1Change" 
-      value="{{idx0}}" 
+      value="{{idx1}}" 
       range="{{politic}}"
-    >当前选择: {{politic[idx0]}}</picker>
+    >当前选择: {{politic[idx1]}}</picker>
   </van-cell>
   <van-cell
-    title="请选择部门"
+    title="部门"
     icon="newspaper-o"
     size="large"
   >
-    <picker>当前选择: {{}}</picker>
+    <picker
+      bindchange="bindPicker2Change" 
+      value="{{idx2}}" 
+      range="{{department}}"
+    >当前选择: {{department[idx2]}}</picker>
+  </van-cell>
+  <van-cell
+    bindtap="popup"
+    wx:if="{{inner}}"
+    title="内设部门"
+    icon="hotel-o"
+    size="large"
+    bindtap="popup"
+  >
+    当前选择: {{innerDepartment}}
   </van-cell>
   <van-field
     clearable
@@ -103,3 +117,17 @@
   <view class="top"></view>
 </view>
 <view wx:else class="bottom"></view>
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  overlay="{{ true }}"
+  bind:close="onClose"
+>
+  <checkbox-group bindchange="checkboxChange">
+    <view>
+      <label class="checkbox" wx:for="{{items}}" wx:key="propery" wx:for-items="item">
+        <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </view>
+  </checkbox-group>
+</van-popup>

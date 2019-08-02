@@ -3,7 +3,8 @@
     "van-field": "../../vant/field/index",
     "van-cell": "../../vant/cell/index",
     "van-button": "../../vant/button/index",
-    "van-cell-group": "../../vant/cell-group/index"
+    "van-cell-group": "../../vant/cell-group/index",
+    "van-popup": "../../vant/popup/index"
   },
   "navigationBarTitleText": "个人简历"
 }

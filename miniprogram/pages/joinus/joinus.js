@@ -16,8 +16,12 @@ Page({
     major: null,
     hobby: null,
     errmess: null,
-    politic: ["未知", "党员", "共青团团员", "群众"],
-    idx0: 0,
+    politic: ["党员", "共青团团员", "群众", "未知"],
+    department: ["创业网", "办公室", "SYIB", "第四部门", ""],
+    idx1: 3,
+    idx2: 4,
+    inner: false,
+    show: false,
     resume: null,
     save: false
   },
@@ -47,19 +51,19 @@ Page({
           switch (that.data.userInfo.politicCountenance) {
             case "党员": {
               that.setData({
-                idx0: 1
+                idx1: 0
               })
               break
             }
             case "共青团员": {
               that.setData({
-                idx0: 2
+                idx1: 1
               })
               break
             }
             case "群众": {
               that.setData({
-                idx0: 3
+                idx1: 2
               })
               break
             }
@@ -247,34 +251,86 @@ Page({
 
   bindPicker1Change(e) {
     this.setData({
-      idx0: e.detail.value
+      idx1: e.detail.value
     })
-    if (e.detail.value == 1) {
-      app.globalData.userInfo.politicCountenance = "党员"
-      var that = this
-      userInfo.doc(app.globalData.userInfo._id).update({
-        data: {
-          politicCountenance: "党员"
-        }
+    var politicCountenance
+    switch(e.detail.value) {
+      case 0: {
+        politicCountenance = "党员"
+        break
+      }
+      case 1: {
+        politicCountenance = "共青团员"
+        break
+      }
+      case 2: {
+        politicCountenance = "群众"
+        break
+      }
+      default: break
+    }
+    app.globalData.userInfo.politicCountenance = politicCountenance
+    var that = this
+    userInfo.doc(app.globalData.userInfo._id).update({
+      data: {
+        politicCountenance: politicCountenance
+      }
+    })
+  },
+
+  bindPicker2Change(e) {
+    if (e.detail.value != 4) {
+      this.setData({
+        idx2: e.detail.value,
+        inner: true
       })
-    } else if (e.detail.value == 2) {
-      app.globalData.userInfo.politicCountenance = "共青团员"
-      var that = this
-      userInfo.doc(app.globalData.userInfo._id).update({
-        data: {
-          politicCountenance: "共青团员"
-        }
-      })
-    } else if (e.detail.value == 3) {
-      app.globalData.userInfo.politicCountenance = "群众"
-      var that = this
-      userInfo.doc(app.globalData.userInfo._id).update({
-        data: {
-          politicCountenance: "群众"
-        }
+    } else {
+      this.setData({
+        inner: false
       })
     }
+    switch(e.detail.value) {
+      case 0: {
+        this.setData({
+          items: ["网络技术部", "美工部", "记者部", "编辑部"]
+        })
+        break
+      }
+      case 1: {
+        this.setData({
+          items: ["部门1", "部门2", "部门3", "部门4"]
+        })
+        break
+      }
+      case 2: {
+        this.setData({
+          items: ["部门1", "部门2", "部门3", "部门4"]
+        })
+        break
+      }
+      case 3: {
+        this.setData({
+          items: ["部门1", "部门2", "部门3", "部门4"]
+        })
+        break
+      }
+      default: break
+    }
   },
+
+  popup() {
+    this.setData({
+      show: true
+    })
+  },
+
+  onClose(){
+    this.setData({
+      show: false
+    })
+  },
+
+  checkboxChange(){},
 
   hobby(e) {
     this.setData({
