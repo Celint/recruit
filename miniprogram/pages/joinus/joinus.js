@@ -22,7 +22,8 @@ Page({
     idx1: 0,
     idx2: 0,
     dep: 0,
-    inner: false,
+    inner: true,
+    result: '',
     list1: ["网络技术部", "美工设计部", "记者部", "编辑部"],
     list2: ["部门1", "部门2", "部门3", "部门4"],
     list3: ["部门1", "部门2", "部门3", "部门4"],
@@ -46,6 +47,51 @@ Page({
           save: true
         })
       }
+      this.setData({
+        status: app.globalData.status,
+        idx2: app.globalData.department
+      })
+      switch (app.globalData.department) {
+        case "1":
+          {
+            that.setData({
+              dep: 1,
+              inner: false
+            })
+            break
+          }
+        case "2":
+          {
+            that.setData({
+              dep: 2,
+              inner: false
+            })
+            break
+          }
+        case "3":
+          {
+            that.setData({
+              dep: 3,
+              inner: false
+            })
+            break
+          }
+        case "4":
+          {
+            that.setData({
+              dep: 4,
+              inner: false
+            })
+            break
+          }
+        default:
+          break
+      }
+      if (app.globalData.innerDep != '') {
+        this.setData({
+          result: app.globalData.innerDep
+        })
+      }
       userInfo.doc(app.globalData.userInfo._id).get({
         success: res => {
           app.globalData.userInfo = res.data
@@ -62,25 +108,28 @@ Page({
             errmess: null
           })
           switch (that.data.userInfo.politicCountenance) {
-            case "党员": {
-              that.setData({
-                idx1: 1
-              })
-              break
-            }
-            case "共青团员": {
-              that.setData({
-                idx1: 2
-              })
-              break
-            }
-            case "群众": {
-              that.setData({
-                idx1: 3
-              })
-              break
-            }
-            default: 
+            case "党员":
+              {
+                that.setData({
+                  idx1: 1
+                })
+                break
+              }
+            case "共青团员":
+              {
+                that.setData({
+                  idx1: 2
+                })
+                break
+              }
+            case "群众":
+              {
+                that.setData({
+                  idx1: 3
+                })
+                break
+              }
+            default:
               break
           }
         }
@@ -155,7 +204,7 @@ Page({
       title: '删除一寸相片',
       content: '确定删除吗？',
       success: function(res) {
-        if(res.confirm) {
+        if (res.confirm) {
           wx.cloud.deleteFile({
             fileList: [that.data.picture]
           })
@@ -165,7 +214,8 @@ Page({
           userInfo.doc(app.globalData.userInfo._id).update({
             data: {
               picture: null
-            },success: re => {
+            },
+            success: re => {
               app.globalData.userInfo.picture = null
             }
           })
@@ -244,7 +294,7 @@ Page({
     }
   },
 
-  major(e) { 
+  major(e) {
     this.setData({
       major: e.detail
     })
@@ -267,20 +317,24 @@ Page({
       idx1: e.detail.value
     })
     var politicCountenance
-    switch(e.detail.value) {
-      case 1: {
-        politicCountenance = "党员"
+    switch (e.detail.value) {
+      case 1:
+        {
+          politicCountenance = "党员"
+          break
+        }
+      case 2:
+        {
+          politicCountenance = "共青团员"
+          break
+        }
+      case 3:
+        {
+          politicCountenance = "群众"
+          break
+        }
+      default:
         break
-      }
-      case 2: {
-        politicCountenance = "共青团员"
-        break
-      }
-      case 3: {
-        politicCountenance = "群众"
-        break
-      }
-      default: break
     }
     app.globalData.userInfo.politicCountenance = politicCountenance
     var that = this
@@ -295,39 +349,45 @@ Page({
     var that = this
     if (e.detail.value != "0") {
       this.setData({
-        inner: true,
+        inner: false,
         result: ''
       })
-      switch(e.detail.value) {
-        case "1": {
-          that.setData({
-            dep: 1
-          })
+      switch (e.detail.value) {
+        case "1":
+          {
+            that.setData({
+              dep: 1
+            })
+            break
+          }
+        case "2":
+          {
+            that.setData({
+              dep: 2
+            })
+            break
+          }
+        case "3":
+          {
+            that.setData({
+              dep: 3
+            })
+            break
+          }
+        case "4":
+          {
+            that.setData({
+              dep: 4
+            })
+            break
+          }
+        default:
           break
-        }
-        case "2": {
-          that.setData({
-            dep: 2
-          })
-          break
-        }
-        case "3": {
-          that.setData({
-            dep: 3
-          })
-          break
-        }
-        case "4": {
-          that.setData({
-            dep: 4
-          })
-          break
-        }
-        default: break
       }
     } else {
       this.setData({
-        inner: false,
+        inner: true,
+        dep: 4
       })
     }
     this.setData({
@@ -335,7 +395,7 @@ Page({
     })
   },
 
-  onChange(e){
+  onChange(e) {
     this.setData({
       activeNames: e.detail
     })
@@ -346,14 +406,16 @@ Page({
       result: e.detail
     })
   },
-  
+
   toggle(event) {
-    const { name } = event.currentTarget.dataset;
+    const {
+      name
+    } = event.currentTarget.dataset;
     const checkbox = this.selectComponent(`.checkboxes-${name}`);
     checkbox.toggle();
   },
 
-  noop() { },
+  noop() {},
 
   hobby(e) {
     this.setData({
@@ -373,7 +435,7 @@ Page({
     })
   },
 
-  bindTextArea: function (e) {
+  bindTextArea: function(e) {
     if (e.detail.value != "") {
       this.setData({
         text: e.detail.value,
@@ -392,38 +454,64 @@ Page({
     var that = this
     app.globalData.text = ''
     var department
-    switch (that.data.idx2){
-      case "1": {
-        department = "创业网"
-        break
+    if (that.data.idx2 == '0' || that.data.result == '') {
+      wx.showToast({
+        title: '请选择部门',
+        icon: 'none'
+      })
+    } else {
+      switch (that.data.idx2) {
+        case "1":
+          {
+            department = "创业网"
+            break
+          }
+        case "2":
+          {
+            department = "办公室"
+            break
+          }
+        case "3":
+          {
+            department = "SYIB"
+            break
+          }
+        case "4":
+          {
+            department = "第四个部门"
+            break
+          }
+        default:
+          break
       }
-      case "2": {
-        department = "办公室"
-        break
-      }
-      case "3": {
-        department = "SYIB"
-        break
-      }
-      case "4": {
-        department = "第四个部门"
-        break
-      }
-      default: break
-    }
-    resume.add({
-      data: {
-        department: department,
-        innerDep: that.data.result,
-        text: that.data.text
-      }, success(res) {
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          duration: 500
+      if (app.globalData.status == 0) {
+        resume.add({
+          data: {
+            department: department,
+            innerDep: that.data.result,
+            text: that.data.text
+          },
+          success(res) {
+            wx.showToast({
+              title: '提交成功'
+            })
+          }
+        })
+      } else {
+        resume.doc(app.globalData._id).update({
+          data: {
+            department: department,
+            innerDep: that.data.result,
+            text: that.data.text
+          },
+          success(res) {
+            wx.showToast({
+              title: '保存成功'
+            })
+          }
         })
       }
-    })
+    }
   },
 
 })

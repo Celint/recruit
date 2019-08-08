@@ -4,6 +4,7 @@
     "pages/my/my",
     "pages/department/department",
     "pages/joinus/joinus",
+    "pages/detail/detail",
     "pages/login/login"
   ],
   "window": {

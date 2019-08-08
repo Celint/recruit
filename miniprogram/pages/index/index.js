@@ -5,7 +5,6 @@ const userInfo = db.collection('userInfo')
 
 Page({
   data: {
-    show: true,
     parts: [{
       name: "创业网",
       icon: "../../images/cclogo.png"
@@ -22,7 +21,6 @@ Page({
   },
 
   onLoad: function() {
-    // console.log("你好")
     var openid
     wx.cloud.callFunction({
       name: "login",
@@ -51,21 +49,12 @@ Page({
   },
 
   joinus() {
+    app.globalData.department = '0'
+    app.globalData.innerDep = ''
+    app.globalData.status = 0
     wx.navigateTo({
       url: '/pages/joinus/joinus'
     })
   },
-
-  openup() {
-    this.setData({
-      show: false
-    })
-  },
-
-  opendown() {
-    this.setData({
-      show: true
-    })
-  }
 
 })

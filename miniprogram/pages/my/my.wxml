@@ -56,7 +56,13 @@
 <view wx:if="{{resume != null}}">
   <view>我的简历</view>
   <block wx:for="{{resume}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
-    <van-panel title="{{item.department}}" desc="{{item.innerDep}}" use-footer-slot >
+    <van-panel 
+      title="{{item.department}}" 
+      desc="{{item.innerDep}}" 
+      custom-class="panel"
+      footer-class="foot-button"
+      use-footer-slot 
+    >
       <view class="text">{{item.text}}</view>
       <view slot="footer">
         <van-button data-idx="{{idx}}" size="small" bind:click="modifyIt">修改</van-button>

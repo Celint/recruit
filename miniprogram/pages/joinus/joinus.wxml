@@ -84,7 +84,6 @@
   <van-collapse 
     value="{{ activeNames }}" 
     bind:change="onChange"
-    disable="{{inner}}" 
   >
     <van-collapse-item 
       wx:if="{{dep == 1}}"
@@ -161,6 +160,7 @@
       name="4" 
       icon="hotel-o" 
       value="当前选择: {{result}}"
+      disabled="{{inner}}" 
     >
       <van-checkbox-group value="{{ result }}" bind:change="choose">
         <van-cell-group >
@@ -198,7 +198,7 @@
     size="large"
   />
 </van-cell-group>
-<textarea value="{{text}}" bindblur="bindTextArea" auto-height placeholder="200字左右" />
+<textarea value="{{text}}" maxlength="{{-1}}" bindblur="bindTextArea" auto-height placeholder="200字左右" />
 <view wx:if="{{save}}" class="save">
   <view class="top"></view>
   <van-button type="primary" bind:click="saveIt">保存提交</van-button>

@@ -43,6 +43,10 @@ Page({
             that.setData({
               resume: res.data
             })
+          } else {
+            that.setData({
+              resume: null
+            })
           }
         }
       })
@@ -136,11 +140,50 @@ Page({
   },
 
   modifyIt(e) {
-    console.log(e)
+    var idx = e.currentTarget.dataset.idx
+    app.globalData.text = this.data.resume[idx].text
+    app.globalData.innerDep = this.data.resume[idx].innerDep
+    app.globalData.status = 1
+    app.globalData._id = this.data.resume[idx]._id
+    switch(this.data.resume[idx].department) {
+      case "创业网": {
+        app.globalData.department = '1'
+        break
+      }
+      case "办公室": {
+        app.globalData.department = '2'
+        break
+      }
+      case "SYIB": {
+        app.globalData.department = '3'
+        break
+      }
+      default: {
+        app.globalData.department = '4'
+        break
+      }
+    }
+    wx.navigateTo({
+      url: '/pages/joinus/joinus'
+    })
   },
 
   deleteIt(e) {
-    console.log(e)
+    var idx = e.currentTarget.dataset.idx
+    var that = this
+    wx.showModal({
+      title: '删除此简历',
+      content: '确定删除吗？',
+      success: function(res) {
+        if (res.confirm) {
+          resume.doc(that.data.resume[idx]._id).remove({
+            success(re) {
+              that.onShow()
+            }
+          })
+        }
+      }
+    })
   }
 
 })
