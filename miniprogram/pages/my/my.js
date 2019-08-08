@@ -2,6 +2,7 @@
 const app = getApp()
 const db = wx.cloud.database()
 const userInfo = db.collection('userInfo')
+const resume = db.collection('resume')
 
 Page({
 
@@ -18,6 +19,7 @@ Page({
   },
 
   onShow() {
+    var that = this
     if (app.globalData.userInfo == null) {
       wx.redirectTo({
         url: '/pages/login/login'
@@ -33,10 +35,16 @@ Page({
         major: this.data.userInfo.major,
         errmess: null
       })
-    }
-    if (app.globalData.resume != null) {
-      this.setData({
-        resume: app.globalData.resume
+      resume.where({
+        _openid: app.globalData.userInfo._openid
+      }).get({
+        success(res) {
+          if (res.data.length != 0) {
+            that.setData({
+              resume: res.data
+            })
+          }
+        }
       })
     }
   },
@@ -126,5 +134,13 @@ Page({
       }
     })
   },
+
+  modifyIt(e) {
+    console.log(e)
+  },
+
+  deleteIt(e) {
+    console.log(e)
+  }
 
 })

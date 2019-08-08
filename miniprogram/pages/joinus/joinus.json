@@ -4,7 +4,10 @@
     "van-cell": "../../vant/cell/index",
     "van-button": "../../vant/button/index",
     "van-cell-group": "../../vant/cell-group/index",
-    "van-popup": "../../vant/popup/index"
+    "van-collapse": "../../vant/collapse/index",
+    "van-collapse-item": "../../vant/collapse-item/index",
+    "van-checkbox": "../../vant/checkbox/index",
+    "van-checkbox-group": "../../vant/checkbox-group/index"
   },
   "navigationBarTitleText": "个人简历"
 }

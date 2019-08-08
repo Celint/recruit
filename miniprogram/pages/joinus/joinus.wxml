@@ -81,16 +81,104 @@
       range="{{department}}"
     >当前选择: {{department[idx2]}}</picker>
   </van-cell>
-  <van-cell
-    bindtap="popup"
-    wx:if="{{inner}}"
-    title="内设部门"
-    icon="hotel-o"
-    size="large"
-    bindtap="popup"
+  <van-collapse 
+    value="{{ activeNames }}" 
+    bind:change="onChange"
+    disable="{{inner}}" 
   >
-    当前选择: {{innerDepartment}}
-  </van-cell>
+    <van-collapse-item 
+      wx:if="{{dep == 1}}"
+      title="内设部门" 
+      name="1" 
+      icon="hotel-o" 
+      value="当前选择: {{result}}"
+    >
+      <van-checkbox-group value="{{ result }}" bind:change="choose">
+        <van-cell-group >
+          <van-cell
+            wx:for="{{ list1 }}"
+            wx:key="index"
+            title="{{ item }}"
+            value-class="value-class"
+            clickable
+            data-index="{{ index }}"
+            bind:click="toggle"
+          >
+            <van-checkbox catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+    </van-collapse-item>
+    <van-collapse-item 
+      wx:elif="{{dep == 2}}"
+      title="内设部门" 
+      name="2" 
+      icon="hotel-o" 
+      value="当前选择: {{result}}"
+    >
+      <van-checkbox-group value="{{ result }}" bind:change="choose">
+        <van-cell-group >
+          <van-cell
+            wx:for="{{ list2 }}"
+            wx:key="index"
+            title="{{ item }}"
+            value-class="value-class"
+            clickable
+            data-index="{{ index }}"
+            bind:click="toggle"
+          >
+            <van-checkbox catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+    </van-collapse-item>
+    <van-collapse-item 
+      wx:elif="{{dep == 3}}"
+      title="内设部门" 
+      name="3" 
+      icon="hotel-o" 
+      value="当前选择: {{result}}"
+    >
+      <van-checkbox-group value="{{ result }}" bind:change="choose">
+        <van-cell-group >
+          <van-cell
+            wx:for="{{ list2 }}"
+            wx:key="index"
+            title="{{ item }}"
+            value-class="value-class"
+            clickable
+            data-index="{{ index }}"
+            bind:click="toggle"
+          >
+            <van-checkbox catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+    </van-collapse-item>
+    <van-collapse-item 
+      wx:else
+      title="内设部门" 
+      name="4" 
+      icon="hotel-o" 
+      value="当前选择: {{result}}"
+    >
+      <van-checkbox-group value="{{ result }}" bind:change="choose">
+        <van-cell-group >
+          <van-cell
+            wx:for="{{ list3 }}"
+            wx:key="index"
+            title="{{ item }}"
+            value-class="value-class"
+            clickable
+            data-index="{{ index }}"
+            bind:click="toggle"
+          >
+            <van-checkbox catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" />
+          </van-cell>
+        </van-cell-group>
+      </van-checkbox-group>
+    </van-collapse-item>
+  </van-collapse>
   <van-field
     clearable
     label="兴趣爱好"
@@ -110,24 +198,10 @@
     size="large"
   />
 </van-cell-group>
-<textarea bindblur="bindTextArea" auto-height placeholder="200字左右" />
+<textarea value="{{text}}" bindblur="bindTextArea" auto-height placeholder="200字左右" />
 <view wx:if="{{save}}" class="save">
   <view class="top"></view>
-  <van-button type="primary" bindtap="saveIt">保存</van-button>
+  <van-button type="primary" bind:click="saveIt">保存提交</van-button>
   <view class="top"></view>
 </view>
 <view wx:else class="bottom"></view>
-<van-popup
-  show="{{ show }}"
-  position="bottom"
-  overlay="{{ true }}"
-  bind:close="onClose"
->
-  <checkbox-group bindchange="checkboxChange">
-    <view>
-      <label class="checkbox" wx:for="{{items}}" wx:key="propery" wx:for-items="item">
-        <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-      </label>
-    </view>
-  </checkbox-group>
-</van-popup>

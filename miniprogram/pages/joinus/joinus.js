@@ -2,6 +2,7 @@
 const app = getApp()
 const db = wx.cloud.database()
 const userInfo = db.collection('userInfo')
+const resume = db.collection('resume')
 
 Page({
 
@@ -16,12 +17,16 @@ Page({
     major: null,
     hobby: null,
     errmess: null,
-    politic: ["党员", "共青团团员", "群众", "未知"],
-    department: ["创业网", "办公室", "SYIB", "第四部门", ""],
-    idx1: 3,
-    idx2: 4,
+    politic: ["未知", "党员", "共青团团员", "群众"],
+    department: ["", "创业网", "办公室", "SYIB", "第四部门"],
+    idx1: 0,
+    idx2: 0,
+    dep: 0,
     inner: false,
-    show: false,
+    list1: ["网络技术部", "美工设计部", "记者部", "编辑部"],
+    list2: ["部门1", "部门2", "部门3", "部门4"],
+    list3: ["部门1", "部门2", "部门3", "部门4"],
+    list4: ["部门1", "部门2", "部门3", "部门4"],
     resume: null,
     save: false
   },
@@ -33,6 +38,14 @@ Page({
         url: '/pages/login/login'
       })
     } else {
+      this.setData({
+        text: app.globalData.text
+      })
+      if (app.globalData.text != "") {
+        this.setData({
+          save: true
+        })
+      }
       userInfo.doc(app.globalData.userInfo._id).get({
         success: res => {
           app.globalData.userInfo = res.data
@@ -51,19 +64,19 @@ Page({
           switch (that.data.userInfo.politicCountenance) {
             case "党员": {
               that.setData({
-                idx1: 0
+                idx1: 1
               })
               break
             }
             case "共青团员": {
               that.setData({
-                idx1: 1
+                idx1: 2
               })
               break
             }
             case "群众": {
               that.setData({
-                idx1: 2
+                idx1: 3
               })
               break
             }
@@ -255,15 +268,15 @@ Page({
     })
     var politicCountenance
     switch(e.detail.value) {
-      case 0: {
+      case 1: {
         politicCountenance = "党员"
         break
       }
-      case 1: {
+      case 2: {
         politicCountenance = "共青团员"
         break
       }
-      case 2: {
+      case 3: {
         politicCountenance = "群众"
         break
       }
@@ -279,58 +292,68 @@ Page({
   },
 
   bindPicker2Change(e) {
-    if (e.detail.value != 4) {
+    var that = this
+    if (e.detail.value != "0") {
       this.setData({
-        idx2: e.detail.value,
-        inner: true
+        inner: true,
+        result: ''
       })
+      switch(e.detail.value) {
+        case "1": {
+          that.setData({
+            dep: 1
+          })
+          break
+        }
+        case "2": {
+          that.setData({
+            dep: 2
+          })
+          break
+        }
+        case "3": {
+          that.setData({
+            dep: 3
+          })
+          break
+        }
+        case "4": {
+          that.setData({
+            dep: 4
+          })
+          break
+        }
+        default: break
+      }
     } else {
       this.setData({
-        inner: false
+        inner: false,
       })
     }
-    switch(e.detail.value) {
-      case 0: {
-        this.setData({
-          items: ["网络技术部", "美工部", "记者部", "编辑部"]
-        })
-        break
-      }
-      case 1: {
-        this.setData({
-          items: ["部门1", "部门2", "部门3", "部门4"]
-        })
-        break
-      }
-      case 2: {
-        this.setData({
-          items: ["部门1", "部门2", "部门3", "部门4"]
-        })
-        break
-      }
-      case 3: {
-        this.setData({
-          items: ["部门1", "部门2", "部门3", "部门4"]
-        })
-        break
-      }
-      default: break
-    }
-  },
-
-  popup() {
     this.setData({
-      show: true
+      idx2: e.detail.value
     })
   },
 
-  onClose(){
+  onChange(e){
     this.setData({
-      show: false
+      activeNames: e.detail
     })
   },
 
-  checkboxChange(){},
+  choose(e) {
+    this.setData({
+      result: e.detail
+    })
+  },
+  
+  toggle(event) {
+    const { name } = event.currentTarget.dataset;
+    const checkbox = this.selectComponent(`.checkboxes-${name}`);
+    checkbox.toggle();
+  },
+
+  noop() { },
 
   hobby(e) {
     this.setData({
@@ -351,11 +374,56 @@ Page({
   },
 
   bindTextArea: function (e) {
-    console.log(e.detail.value)
-    this.setData({
-      save: true
+    if (e.detail.value != "") {
+      this.setData({
+        text: e.detail.value,
+        save: true
+      })
+    } else {
+      this.setData({
+        text: e.detail.value,
+        save: false
+      })
+    }
+    app.globalData.text = e.detail.value
+  },
+
+  saveIt() {
+    var that = this
+    app.globalData.text = ''
+    var department
+    switch (that.data.idx2){
+      case "1": {
+        department = "创业网"
+        break
+      }
+      case "2": {
+        department = "办公室"
+        break
+      }
+      case "3": {
+        department = "SYIB"
+        break
+      }
+      case "4": {
+        department = "第四个部门"
+        break
+      }
+      default: break
+    }
+    resume.add({
+      data: {
+        department: department,
+        innerDep: that.data.result,
+        text: that.data.text
+      }, success(res) {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',
+          duration: 500
+        })
+      }
     })
   },
 
-  
 })

@@ -21,7 +21,7 @@
 	},
 	"appid": "wx5163c62db2f7e7d9",
 	"projectname": "recruit",
-	"libVersion": "2.2.5",
+	"libVersion": "2.8.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
