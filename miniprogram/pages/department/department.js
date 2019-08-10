@@ -34,7 +34,7 @@ Page({
         break
       case 1:
         department = '2'
-        title = '办公室'
+        title = 'PF 创业实训'
         part = [{
           name: "部门一",
           path: "../../images/part.png"
@@ -68,7 +68,7 @@ Page({
         break
       case 3:
         department = '4'
-        title = '第4个部门'
+        title = '创业园'
         part = [{
           name: "部门一",
           path: "../../images/part.png"

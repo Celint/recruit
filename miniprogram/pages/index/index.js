@@ -9,13 +9,13 @@ Page({
       name: "创业网",
       icon: "../../images/cclogo.png"
     }, {
-      name: "办公室",
+      name: "PF 创业实训",
       icon: "../../images/5815875139695_610.jpg"
     }, {
       name: "SYIB",
       icon: "../../images/syib.png"
     }, {
-      name: "还有一个部门是什么？",
+      name: "创业园",
       icon: "../../images/3966c198255443eaa3258f2d6b402bc5.jpeg"
     }]
   },

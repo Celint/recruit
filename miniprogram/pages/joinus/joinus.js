@@ -18,7 +18,7 @@ Page({
     hobby: null,
     errmess: null,
     politic: ["未知", "党员", "共青团团员", "群众"],
-    department: ["", "创业网", "办公室", "SYIB", "第四部门"],
+    department: ["", "创业网", "PF 创业实训", "SYIB", "创业园"],
     idx1: 0,
     idx2: 0,
     dep: 0,
@@ -468,7 +468,7 @@ Page({
           }
         case "2":
           {
-            department = "办公室"
+            department = "PF 创业实训"
             break
           }
         case "3":
@@ -478,7 +478,7 @@ Page({
           }
         case "4":
           {
-            department = "第四个部门"
+            department = "创业园"
             break
           }
         default:

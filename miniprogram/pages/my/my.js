@@ -150,7 +150,7 @@ Page({
         app.globalData.department = '1'
         break
       }
-      case "办公室": {
+      case "PF 创业实训": {
         app.globalData.department = '2'
         break
       }
