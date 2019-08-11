@@ -7,6 +7,5 @@
   </view>
 </block>
 <view class="img">
-  <image src="../../images/plus.png" mode='aspectFit' bindtap="joinus"/>
-  <view>加入我们</view>
+  <image src="../../images/joinus.png" mode='aspectFit' bindtap="joinus"/>
 </view>

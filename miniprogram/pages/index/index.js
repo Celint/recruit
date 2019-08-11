@@ -5,19 +5,9 @@ const userInfo = db.collection('userInfo')
 
 Page({
   data: {
-    parts: [{
-      name: "创业网",
-      icon: "../../images/cclogo.png"
-    }, {
-      name: "PF 创业实训",
-      icon: "../../images/5815875139695_610.jpg"
-    }, {
-      name: "SYIB",
-      icon: "../../images/syib.png"
-    }, {
-      name: "创业园",
-      icon: "../../images/3966c198255443eaa3258f2d6b402bc5.jpeg"
-    }]
+    show: true,
+    mi: 0,
+    parts: ['../../images/cyw.png', '../../images/pfcysx.png', '../../images/syib.png', '../../images/cyy.png']
   },
 
   onLoad: function() {
@@ -35,13 +25,53 @@ Page({
             }
           }
         })
-      }, fail(err) {
+      },
+      fail(err) {
         console.log(err)
       }
     })
   },
 
-  goDepartment(e){
+  popup() {
+    if (this.data.show == true) {
+      var i = 40;
+      while (i > 0) {
+        for (var t = Date.now(); Date.now() - t <= 10;);
+        i--;
+        this.setData({
+          mi: 40 - i
+        })
+      }
+      this.setData({
+        mi: 0,
+        show: false
+      })
+      var i = 100;
+      while (i > 0) {
+        for (var t = Date.now(); Date.now() - t <= 2;);
+        i--;
+        this.setData({
+          si: 100 - i,
+          pi: 2 * i
+        })
+      }
+    } else {
+      var i = 100;
+      while (i > 0) {
+        for (var t = Date.now(); Date.now() - t <= 1;);
+        i--;
+        this.setData({
+          si: i,
+          pi: 200 - 2 * i,
+        })
+      }
+      this.setData({
+        show: true
+      })
+    }
+  },
+
+  goDepartment(e) {
     app.globalData.deindex = e.currentTarget.dataset.index
     wx.navigateTo({
       url: '/pages/department/department'
