@@ -3,3 +3,6 @@
   flex-direction: column;
   align-items: center;
 }
+.img image{
+  margin: 5px;
+}

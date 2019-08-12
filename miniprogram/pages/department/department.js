@@ -19,17 +19,17 @@ Page({
         department = '1'
         title = '创业网'
         part = [{
-          name: "网络技术部",
-          path: "../../images/ac37e80c754d43309aea17331df63f49.jpeg"
+          name: "技术部",
+          path: "../../images/jsb.png"
         },{
           name: "美工部",
-          path: "../../images/u=3887626723,1013741648&fm=26&gp=0.jpg"
+          path: "../../images/mgb.png"
         },{
           name: "记者部",
-          path: "../../images/reporter.png"
+          path: "../../images/jzb.png"
         },{
           name: "编辑部",
-          path: "../../images/c82e9d9b12ee4de58706584bf055dcfa.jpeg"
+          path: "../../images/bjb.png"
         }]
         break
       case 1:

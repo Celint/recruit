@@ -1,11 +1,6 @@
-<block wx:for="{{part}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
-  <view data-index="{{idx}}" bindtap="goDepartment">
-    <van-card
-      title="{{item.name}}"
-      thumb="{{item.path}}"
-    />
-  </view>
-</block>
 <view class="img">
+  <block wx:for="{{part}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
+    <image src="{{item.path}}" mode="widthFix" data-index="{{idx}}" bindtap="goDepartment"/>
+  </block>
   <image src="../../images/joinus.png" mode='aspectFit' bindtap="joinus"/>
 </view>
