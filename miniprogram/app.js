@@ -21,6 +21,7 @@ App({
       innerDep: '',        //内设部门
       status: 0,           //状态，0提交，1保存
       inDep: '',           //部门名称
+      introduce: '',       //部门介绍
     }
   }
 })

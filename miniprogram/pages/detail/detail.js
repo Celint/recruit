@@ -11,7 +11,8 @@ Page({
 
   onShow() {
     this.setData({
-      inDep: app.globalData.inDep
+      inDep: app.globalData.inDep,
+      introduce: app.globalData.introduce
     })
     wx.setNavigationBarTitle({
       title: app.globalData.inDep

@@ -1,1 +1,3 @@
-<text>{{inDep}}介绍页</text>
+<view>
+  <text>{{introduce}}</text>
+</view>
