@@ -18,16 +18,9 @@ Page({
     hobby: null,
     errmess: null,
     politic: ["未知", "党员", "共青团团员", "群众"],
-    department: ["", "创业网", "PF 创业实训", "SYIB", "创业园"],
     idx1: 0,
-    idx2: 0,
-    dep: 0,
-    inner: true,
     result: '',
     list1: ["技术部", "美工部", "记者部", "编辑部"],
-    list2: ["部门1", "部门2", "部门3", "部门4"],
-    list3: ["部门1", "部门2", "部门3", "部门4"],
-    list4: ["部门1", "部门2", "部门3", "部门4"],
     resume: null,
     save: false
   },
@@ -48,45 +41,8 @@ Page({
         })
       }
       this.setData({
-        status: app.globalData.status,
-        idx2: app.globalData.department
+        status: app.globalData.status
       })
-      switch (app.globalData.department) {
-        case "1":
-          {
-            that.setData({
-              dep: 1,
-              inner: false
-            })
-            break
-          }
-        case "2":
-          {
-            that.setData({
-              dep: 2,
-              inner: false
-            })
-            break
-          }
-        case "3":
-          {
-            that.setData({
-              dep: 3,
-              inner: false
-            })
-            break
-          }
-        case "4":
-          {
-            that.setData({
-              dep: 4,
-              inner: false
-            })
-            break
-          }
-        default:
-          break
-      }
       if (app.globalData.innerDep != '') {
         this.setData({
           result: app.globalData.innerDep
@@ -342,56 +298,6 @@ Page({
       data: {
         politicCountenance: politicCountenance
       }
-    })
-  },
-
-  bindPicker2Change(e) {
-    var that = this
-    if (e.detail.value != "0") {
-      this.setData({
-        inner: false,
-        result: ''
-      })
-      switch (e.detail.value) {
-        case "1":
-          {
-            that.setData({
-              dep: 1
-            })
-            break
-          }
-        case "2":
-          {
-            that.setData({
-              dep: 2
-            })
-            break
-          }
-        case "3":
-          {
-            that.setData({
-              dep: 3
-            })
-            break
-          }
-        case "4":
-          {
-            that.setData({
-              dep: 4
-            })
-            break
-          }
-        default:
-          break
-      }
-    } else {
-      this.setData({
-        inner: true,
-        dep: 4
-      })
-    }
-    this.setData({
-      idx2: e.detail.value
     })
   },
 

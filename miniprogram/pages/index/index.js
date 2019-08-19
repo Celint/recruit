@@ -5,9 +5,7 @@ const userInfo = db.collection('userInfo')
 
 Page({
   data: {
-    show: true,
-    mi: 0,
-    parts: ['../../images/cyw.png', '../../images/pfcysx.png', '../../images/syib.png', '../../images/cyy.png']
+
   },
 
   onLoad: function() {
@@ -32,47 +30,7 @@ Page({
     })
   },
 
-  popup() {
-    if (this.data.show == true) {
-      var i = 40;
-      while (i > 0) {
-        for (var t = Date.now(); Date.now() - t <= 10;);
-        i--;
-        this.setData({
-          mi: 40 - i
-        })
-      }
-      this.setData({
-        mi: 0,
-        show: false
-      })
-      var i = 100;
-      while (i > 0) {
-        for (var t = Date.now(); Date.now() - t <= 2;);
-        i--;
-        this.setData({
-          si: 100 - i,
-          pi: 2 * i
-        })
-      }
-    } else {
-      var i = 100;
-      while (i > 0) {
-        for (var t = Date.now(); Date.now() - t <= 1;);
-        i--;
-        this.setData({
-          si: i,
-          pi: 200 - 2 * i,
-        })
-      }
-      this.setData({
-        show: true
-      })
-    }
-  },
-
-  goDepartment(e) {
-    app.globalData.deindex = e.currentTarget.dataset.index
+  goDepartment() {
     wx.navigateTo({
       url: '/pages/department/department'
     })

@@ -1,17 +1,7 @@
-<view class="img" wx:if="{{title == '创业网'}}">
+<view class="img">
   <text>\n</text>
   <van-button type="primary" bindtap="goDetail" >查看网站介绍</van-button>
   <block wx:for="{{part}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
     <image src="{{item.path}}" mode="widthFix" data-index="{{idx}}" bindtap="goDepartment"/>
   </block>
-  <image src="../../images/joinus.png" mode='aspectFit' bindtap="joinus"/>
-</view>
-<view class="img" wx:else>
-  <block wx:for="{{part}}" wx:for-item="item" wx:key="property" wx:for-index="idx">
-    <van-card
-      title="{{item.name}}"
-      thumb="{{ item.path }}"
-    />
-  </block>
-  <image src="../../images/joinus.png" mode='aspectFit' bindtap="joinus"/>
 </view>

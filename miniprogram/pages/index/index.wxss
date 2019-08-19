@@ -4,5 +4,5 @@
   align-items: center;
 }
 image {
-  margin: 5px;
+  margin: 25px;
 }
